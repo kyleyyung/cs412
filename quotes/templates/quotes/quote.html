@@ -1,7 +1,7 @@
 {% extends 'quotes/base.html' %}
 
 {% block content %}
-        <h1>Michael Jordan</h1>
-        <h3>{{quote}}</h3>
-        <img src="{{image}}"></img>
+        <h1>Michael Jordan</h1> <!-- header -->
+        <h3>{{quote}}</h3> <!-- calls on the context variable quote from quote views -->
+        <img src="{{image}}"></img> <!-- calls on the context variable image from quote views-->
 {% endblock %}

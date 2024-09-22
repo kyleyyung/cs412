@@ -4,16 +4,18 @@ body {
     background-color: white; 
 }
 
+/* styles for the navbar */
 .navbar {
     background-color: black;
     padding: 15px;
 }
 
+/* creates a red gradient for h3 headers */
 h3 {
     background: linear-gradient(45deg, rgb(206, 0, 0), rgb(253, 137, 137));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
     font-size: 20px;
     font-weight: bold;
 }
@@ -25,6 +27,7 @@ a {
     font-weight: bold; 
 }
 
+/* styles the links in the nav bar */
 a:link { 
   text-decoration: none; 
 } 
@@ -38,6 +41,7 @@ a:active {
   text-decoration: none; 
 }
 
+/* keeps images 400x400 */
 img {
     width: 400px;
     height: 400px;
@@ -45,16 +49,19 @@ img {
     margin: 10px;
 }
 
+/* for the bio paragraph in about */
 .bio {
     width: 800px;
 }
 
+/* the table in the about page */
 .table {
     text-align: center;
     justify-content: center;
     align-items: center;
 }
 
+/* for the div in the about page */
 .container {
     display: inline-block;
     text-align: center; 

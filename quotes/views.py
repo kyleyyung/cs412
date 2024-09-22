@@ -19,6 +19,7 @@ import random
 
 #     return HttpResponse(response_text)
 
+# view for main page
 def quote(request):
     ''' 
     A function to respond to the /hw url.
@@ -28,6 +29,7 @@ def quote(request):
     template_name="quotes/quote.html"
 
     #create a dictionary of context variables
+    #quote is a list of string quotes and image is a list of URLs of images
     context = {
         'current_time': time.ctime(),
         'quote': random.choice(["“If you do the work, you get rewarded. There are no shortcuts in life.”", "“Heart is what separates the good from the great.”", "“I've never been afraid to fail.”", "“If you quit once, it becomes a habit. Never quit!”", "“Never say never, because limits, like fears, are often just an illusion.”","“I can accept failure, everyone fails at something. But I can't accept not trying.”","“You must expect great things of yourself before you can do them.”",]),
@@ -36,6 +38,7 @@ def quote(request):
 
     return render(request, template_name, context)
 
+#view for about page
 def about(request):
     ''' 
     A function to respond to the /hw url.
@@ -51,6 +54,7 @@ def about(request):
 
     return render(request, template_name, context)
 
+#view for show all page
 def show_all(request):
     ''' 
     A function to respond to the /hw url.
@@ -60,6 +64,7 @@ def show_all(request):
     template_name="quotes/show_all.html"
 
     #create a dictionary of context variables
+    # attach each quote and iomage to a different context variable
     context = {
         'current_time': time.ctime(),
         'quote1': "“If you do the work, you get rewarded. There are no shortcuts in life.”",
