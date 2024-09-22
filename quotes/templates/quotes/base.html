@@ -1,0 +1,24 @@
+{% load static %}
+<html>
+    <head>
+        <title>hello, world!</title>
+        <link rel="stylesheet" href="{% static 'styles.css' %}">
+    </head>
+    <body>
+
+        <nav class="navbar">
+            <ul>
+                <a href="{% url 'quote' %}">Quotes</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'show_all' %}">Show All</a>
+            </ul>
+        </nav>
+
+        {% block content %}
+        {% endblock %}
+
+        <hr>
+        <p>Designed by Kyle Yung</p>
+        <p>This page was generated at {{current_time}}.</p>
+    </body>
+</html>
