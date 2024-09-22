@@ -3,19 +3,12 @@
 {% block content %}
 
         <h2>Quotes</h2> <!-- Quotes section header -->
-        <h3>{{quote1}}</h3> <!-- calls context variable quote1 -->
-        <h3>{{quote2}}</h3>
-        <h3>{{quote3}}</h3>
-        <h3>{{quote4}}</h3>
-        <h3>{{quote5}}</h3>
-        <h3>{{quote6}}</h3>
-        <h3>{{quote7}}</h3>
+                        {% for quote in quote %} <!-- for loop that displays quotes -->
+                                <h3>{{ quote }}</h3>
+                        {% endfor %}
 
         <h2>Images</h2> <!-- Images section header -->
-        <img src={{image1}}></img> <!-- calls context variable image1 -->
-        <img src={{image2}}></img>
-        <img src={{image3}}></img>
-        <img src={{image4}}></img>
-        <img src={{image5}}></img>
-        <img src={{image6}}></img>
+                {% for image in image %} <!-- for loop that displays images -->
+                        <img src="{{image}}">
+                {% endfor %}
 {% endblock %}
