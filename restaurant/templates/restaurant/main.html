@@ -1,0 +1,37 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+
+<div>
+    <h1>Welcome to CS412 Restaurant!</h1>
+    <!--Home page Image-->
+    <img src="{{main_image}}">
+    <p>Only the finest full stack meals will be found here!</p><br>
+    <!--displays the location/address-->
+    <h3>Location:</h3>
+    <p>10 Buick Street</p>
+    <p>Boston, MA, 02215</p>
+    <div class="container">
+        <!-- Table to show the hours of operation-->
+        <table>
+            <tr>
+                <h3>Hours of Operation</h3>
+            </tr>
+    
+            <tr>
+                <!--the left column-->
+                <td>
+                    <p>Mon-Fri</p>
+                    <p>Sat-Sun</p>
+                </td>
+                <!--the right column-->
+                <td>
+                    <p>8AM - 10PM</p>
+                    <p>12PM - 8PM</p>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,37 @@
+{% extends 'restaurant/base.html' %}
+
+{% block content %}
+    <div>
+        <h1>Order Complete</h1>
+        <!-- Displays the Ready Time-->
+        <h3>Your Order Will Be Ready On {{readytime}}</h3>
+
+        <p>
+            Name: {{name}}
+        <p>
+
+        <p>
+            Phone: {{phone}}
+        </p>
+
+        <p>
+            Email: {{email}}
+        </p>
+
+        <p>
+            <h3>Items:</h3> <!-- For loop for items purchases, displays them one at a time-->
+            {% for item in items %}
+                {{item}}<br>
+            {% endfor %}
+        </p>
+
+        <p>
+            Comments: {{comments}}
+        </p>
+
+        <p>
+            Total Cost: ${{cost}} <!-- displays total cost -->
+        </p>
+    </div>
+
+    {% endblock %}
