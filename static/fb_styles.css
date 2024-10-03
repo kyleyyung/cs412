@@ -1,0 +1,39 @@
+body {
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: lightcyan;
+}
+
+.profile {
+    background-color: rgb(167, 221, 246);
+    border: 5px solid white;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    display: inline-block;
+}
+
+/* keeps image at 400x400px*/
+img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.table {
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+td { /* targets td */
+    vertical-align: top; /* aligns at the top*/
+    padding: 10px;
+    width: 50%; /* makes sure they take up equal space */
+}
+
+p {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
