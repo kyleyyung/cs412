@@ -6,18 +6,17 @@
 
 <h1>Mini Facebook</h1>
 
-<!-- print out the context variable called articles -->
-<!-- {{articles}} -->
+<!-- print out the context variable called profiles -->
 
 <main class="grid-container">
-    {% for a in profiles %}
+    {% for a in profiles %} <!-- for loop that goes through every profile-->
     <div class="profile">
-        <img src="{{a.image_url}}" alt="{{a.image_url}}">
-        <h3>{{a.first_name}} {{a.last_name}}</h3>
-        <p>{{a.city}}</p>
-        <p>{{a.email}} </p>
+        <img src="{{a.image_url}}" alt="{{a.image_url}}"> <!--display the profiles image-->
+        <h3>{{a.first_name}} {{a.last_name}}</h3> <!-- displays their first and last name-->
+        <p>{{a.city}}</p> <!--displays their home city-->
+        <p>{{a.email}} </p> <!-- displays their email address-->
     </div>
-    {% endfor %}
+    {% endfor %} <!--end for loop-->
 </main>
 
 {% endblock %}
