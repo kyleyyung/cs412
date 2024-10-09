@@ -12,10 +12,14 @@
 <main class="grid-container">
     {% for a in articles %}
     <article>
-        <h2>{{a.title}}</h2>
+        <a href="{% url 'article' a.pk %}">
+            <h2>{{a.title}}</h2>
+        </a>
         <h3>by {{a.author}} at {{a.published}}</h3>
 
-        <img src="{{a.image_url}}" alt="{{a.image_url}}">
+        <a href="{% url 'article' a.pk %}"> <!-- use object instance.pk-->
+            <img src="{{a.image_url}}" alt="{{a.image_url}}">
+        </a>
         <p>
             {{a.text}}
         </p>
