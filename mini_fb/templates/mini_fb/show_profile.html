@@ -1,0 +1,43 @@
+<!--mini_fb/templates/mini_fb/show_all.html -->
+
+{% extends 'mini_fb/base.html' %}
+
+{% block content %}
+
+<h1>Mini Facebook</h1>
+
+<!-- print out the context variable called profiles -->
+
+<main class="grid-container">
+    <div class="profile">
+        <img src="{{profile.image_url}}" alt="{{profile.image_url}}"> <!--display the profiles image-->
+        <h3>{{profile.first_name}} {{profile.last_name}}</h3> <!-- displays their first and last name-->
+        <p>{{profile.city}}</p> <!--displays their home city-->
+        <p>{{profile.email}} </p> <!-- displays their email address-->
+    </div>
+
+    <!--display the comments-->
+    <div>
+        <h2>Status Messages</h2>
+        <!-- creates a button to redirec the user to the create status form-->
+        <button><a href="{% url 'create_status' profile.pk %}">Add Message</a></button>
+        <!--call the Profiles's get_status() method-->
+        {% if profile.get_status_messages %}
+            {% for s in profile.get_status_messages %}
+            <div>
+                <!-- display the message and the time it was sent-->
+                <strong>{{ s.timestamp }}</strong>
+                <p>{{ s.message }}</p>
+            </div>
+            <!-- end for loop-->
+            {% endfor %}
+        {% else %}
+        <div>
+            <!-- if no status messages, say so-->
+            <p>No Status Messages.</p>
+        </div>
+        {% endif %}
+    </div>
+</main>
+
+{% endblock %}
