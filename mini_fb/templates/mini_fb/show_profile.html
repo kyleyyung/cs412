@@ -23,11 +23,14 @@
         <button><a href="{% url 'create_status' profile.pk %}">Add Message</a></button>
         <!--call the Profiles's get_status() method-->
         {% if profile.get_status_messages %}
-            {% for s in profile.get_status_messages %}
+            {% for status in profile.get_status_messages %}
+                {% for img in status.get_images %}
+                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
+                {% endfor %}
             <div>
                 <!-- display the message and the time it was sent-->
-                <strong>{{ s.timestamp }}</strong>
-                <p>{{ s.message }}</p>
+                <strong>{{ status.timestamp }}</strong>
+                <p>{{ status.message }}</p>
             </div>
             <!-- end for loop-->
             {% endfor %}

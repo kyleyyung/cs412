@@ -33,6 +33,17 @@ class StatusMessage(models.Model):
     message = models.TextField(blank = False)
     profile = models.ForeignKey("Profile", on_delete=models.CASCADE)
 
+    def get_images(self):
+        # use the ORM to filter images where this instance of status message is the foreign key
+        images = Image.objects.filter(status_message=self)
+        return images
+    
     def __str__(self):
         '''Return a string representation of this Status Message'''
         return f"{self.message}"
+    
+class Image(models.Model):
+    image_file = models.ImageField(blank=True)
+    timestamp = models.DateTimeField(auto_now = True)
+    status_message = models.ForeignKey("StatusMessage", on_delete=models.CASCADE)
+

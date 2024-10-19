@@ -74,5 +74,10 @@ class CreateCommentView(CreateView):
         context['article'] = article
 
         return context
+    
+class CreateArticleView(CreateView):
+    '''A view to create a new Article and save it to the database.'''
+    form_class = CreateArticleForm
+    template_name = "blog/create_article_form.html"
 
 
