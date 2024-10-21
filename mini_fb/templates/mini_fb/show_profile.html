@@ -8,12 +8,13 @@
 
 <!-- print out the context variable called profiles -->
 
-<main class="grid-container">
+<main class="mini_grid-container">
     <div class="profile">
         <img src="{{profile.image_url}}" alt="{{profile.image_url}}"> <!--display the profiles image-->
         <h3>{{profile.first_name}} {{profile.last_name}}</h3> <!-- displays their first and last name-->
         <p>{{profile.city}}</p> <!--displays their home city-->
         <p>{{profile.email}} </p> <!-- displays their email address-->
+        <button><a href="{% url 'update_profile' profile.pk %}">Update Profile</a></button>
     </div>
 
     <!--display the comments-->
@@ -24,14 +25,35 @@
         <!--call the Profiles's get_status() method-->
         {% if profile.get_status_messages %}
             {% for status in profile.get_status_messages %}
-                {% for img in status.get_images %}
-                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
-                {% endfor %}
-            <div>
-                <!-- display the message and the time it was sent-->
-                <strong>{{ status.timestamp }}</strong>
-                <p>{{ status.message }}</p>
-            </div>
+            <table class="sm">
+                <td>
+                    <!-- check if there are any images-->
+                    {% if status.get_images %}
+                        <!-- display status images images-->
+                        {% for img in status.get_images %}
+                            <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
+                        {% endfor %}
+                    <!-- if there isn't-->
+                    {% else %}
+                    <!--display default avatar-->
+                        <img src='https://wooster.edu/wp-content/uploads/2021/06/Headshot_Placeholder_3-1-500x500.png' alt='Default Avatar'>
+                    {% endif %}
+                </td>
+                <td>
+                    <table>
+                        <tr>
+                            <!-- display the message and the time it was sent-->
+                            <p>{{ status.timestamp }}</p>
+                            <p>{{ status.message }}</p>
+                        </tr>
+                        <tr>
+                            <!-- display the update and delete message buttons-->
+                            <button class="mini_button"><a href="{% url 'update_status' status.pk %}">Update</a></button>
+                            <button class="mini_button"><a href="{% url 'delete_status' status.pk %}">Delete</a></button>
+                        </tr>
+                    </table>
+                </td>
+            </table>
             <!-- end for loop-->
             {% endfor %}
         {% else %}

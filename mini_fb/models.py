@@ -46,4 +46,3 @@ class Image(models.Model):
     image_file = models.ImageField(blank=True)
     timestamp = models.DateTimeField(auto_now = True)
     status_message = models.ForeignKey("StatusMessage", on_delete=models.CASCADE)
-

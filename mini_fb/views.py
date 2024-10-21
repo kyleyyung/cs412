@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from . models import *
 from .forms import *
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
 class ShowAllProfilesView(ListView):
     '''A view to show all Profiles'''
@@ -56,6 +56,14 @@ class CreateStatusMessageView(CreateView):
         # attach the profile to the status message
         # (form.instance is the new status message object)
         form.instance.profile = profile
+        # save the status message to database
+        sm = form.save()
+
+        files = self.request.FILES.getlist('files')
+
+        for file in files:
+            img = Image(status_message = sm, image_file = file)
+            img.save()
 
         # deleguate work to the superclass version of this method
         return super().form_valid(form)
@@ -69,3 +77,32 @@ class CreateStatusMessageView(CreateView):
         context['profile'] = profile
 
         return context
+
+class UpdateProfileView(UpdateView):
+    '''a view to show/process the update profile form
+    on GET: send back the form
+    on POST: read the form data, update the instant of a profile; save to database;'''
+    model = Profile
+    form_class = UpdateProfileForm
+    template_name = 'mini_fb/update_profile_form.html'
+
+class DeleteStatusMessageView(DeleteView):
+    '''a view to show/process the deletion of a status message'''
+    model = StatusMessage
+    template_name = 'mini_fb/delete_status_form.html'
+    context_object_name = 'status'
+
+    def get_success_url(self) -> str:
+        '''return the URL to redirect to after successful delete'''
+        return reverse("show_profile", kwargs={'pk': self.object.profile.pk})
+    
+class UpdateStatusMessageView(UpdateView):
+    '''a view to show/process the update of a status message'''
+    model = StatusMessage
+    form_class = UpdateStatusForm
+    template_name = 'mini_fb/update_status_form.html'
+
+    def get_success_url(self) -> str:
+        '''return the URL to redirect to after successful update'''
+        return reverse("show_profile", kwargs={'pk': self.object.profile.pk})
+    

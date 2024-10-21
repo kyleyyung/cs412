@@ -33,6 +33,13 @@ a:visited {
     gap: 20px; /* space between the grid items */
 }
 
+/* styles main */
+.mini_grid-container {
+    display: grid; /* displays the profile in a grid pattern*/
+    grid-template-columns: repeat(2, 1fr); /* organizes the grid to have have at most 3 items in a row */
+    gap: 20px; /* space between the grid items */
+}
+
 /* profile div */
 .profile {
     background-color: rgb(167, 221, 246);
@@ -69,7 +76,19 @@ button {
     padding: 10px;
 }
 
+button {
+    background-color: rgb(0, 100, 159);
+    margin: 5px;
+    padding: 5px;
+    text-align: center;
+}
+
 /* targets the submit and cancel buttons in the forms*/
 input {
     margin: 10px;
+}
+
+.sm {
+    background-color: lightblue;
+    margin: 20px;
 }

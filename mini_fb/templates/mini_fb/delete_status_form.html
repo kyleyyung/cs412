@@ -2,23 +2,21 @@
 {% extends 'mini_fb/base.html' %}
 {% block content %}
 
-<h2>Add a Status Message</h2>
+<h2>Delete a Status Message</h2>
 
 <form method="POST" enctype="multipart/form-data">
-    <!-- dislay the form (context variable) -->
      <table>
-        <input type="file" name = "files" multiple />
-        {{form.as_table}}
         <tr>
-            <td></td>
             <td> 
+                <!--display warning-->
+                <h3>Are you sure you want to delete this status message?</h3>
                 <!-- the submit button-->   
-                <input type="submit" name="Create Status Message">
+                <button input type="submit" name="Delete Status Message"><a>Delete</a></button>
                 {% csrf_token %}
             </form>
             <!-- the cancel button, redirects user to the targeted profile-->
-            <form action="{% url 'show_profile' profile.pk %}">
-                <input type="submit" name="Cancel" value="Cancel">
+            <form action="{% url 'show_profile' object.profile.pk %}" method ="get">
+                <button input type="submit" name="Cancel" value="Cancel"><a>Cancel</a></button>
             </form>
             </td>
         </tr>
