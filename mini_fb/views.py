@@ -2,11 +2,11 @@
 # views to show the mini facebook app
 
 from typing import Any
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.urls import reverse
 from . models import *
 from .forms import *
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 
 class ShowAllProfilesView(ListView):
     '''A view to show all Profiles'''
@@ -106,3 +106,19 @@ class UpdateStatusMessageView(UpdateView):
         '''return the URL to redirect to after successful update'''
         return reverse("show_profile", kwargs={'pk': self.object.profile.pk})
     
+class CreateFriendView(View):
+    '''
+    class-based view called AddFriendView, which inherits from the generic View class.
+    '''
+    def dispatch(self, request, pk, other_pk):
+        '''
+        read the URL parameters (from self.kwargs), use the object manager to find the requisite Profile objects, and then call the Profile‘s add_friend method (from step 2, above).
+        '''
+        p1 = Profile.objects.get(pk=pk)
+        p2 = Profile.objects.get(pk=other_pk)
+        p1.add_friend(p2)
+        return redirect('show_profile', pk=pk)
+
+class ShowFriendSuggestionsView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/friend_suggestions.html'

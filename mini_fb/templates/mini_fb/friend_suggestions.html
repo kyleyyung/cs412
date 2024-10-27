@@ -1,0 +1,21 @@
+<!--mini_fb/templates/blogs-->
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+
+<div>
+    <h2>Friend Suggestions</h2>
+        <main class="grid-container">
+            {% for friend in profile.get_friend_suggestions %}
+            <div class="profile">
+                <button class="mini_button"><a href="{% url 'create_friend' profile.pk friend.pk %}">Add Friend</a></button>
+                <a href="{% url 'show_suggestions' profile.pk %}">
+                    <img src="{{friend.image_url}}" alt="{{friend.image_url}}">
+                </a>
+                <p>{{friend}}</p>
+            </div>
+        {% endfor %}
+    </main>
+</div>
+
+
+{% endblock %}
