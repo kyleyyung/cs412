@@ -27,6 +27,11 @@ class Profile(models.Model):
     def get_absolute_url(self) -> str:
         '''return the URL to redirect to after successful create'''
         return reverse("show_profile", kwargs={'pk': self.pk})
+    
+    def get_friends(self):
+        friends1 = Friend.objects.filter(profile1=self)
+        friends2 = Friend.objects.filter(profile2=self)
+        return friends1 | friends2
 
 class StatusMessage(models.Model):
     timestamp = models.DateTimeField(auto_now = True)
@@ -46,3 +51,13 @@ class Image(models.Model):
     image_file = models.ImageField(blank=True)
     timestamp = models.DateTimeField(auto_now = True)
     status_message = models.ForeignKey("StatusMessage", on_delete=models.CASCADE)
+
+class Friend(models.Model):
+    profile1 = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name="profile1")
+    profile2 = models.ForeignKey("Profile", on_delete=models.CASCADE, related_name="profile2")
+    timestamp = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        '''Return a string representation of this Friendship'''
+        return f"{self.profile1} & {self.profile2}"
+    

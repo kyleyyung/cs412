@@ -5,3 +5,4 @@ from .models import *
 admin.site.register(Profile) # registers a section called Profile in the admin page
 admin.site.register(StatusMessage) # registers a section called StatusMessage in the admin page
 admin.site.register(Image) # registers a section called StatusMessage in the admin page
+admin.site.register(Friend) # registers a section called Friend in the admin page

@@ -62,6 +62,25 @@
             <p>No Status Messages.</p>
         </div>
         {% endif %}
+
+        <p>Friends:</p>
+        {% if profile.get_friends %}
+            {% for friend in profile.get_friends %}
+                {% if friend.profile1 == profile %}
+                    <a href="{% url 'show_profile' friend.profile2.pk %}">
+                        <img src="{{friend.profile2.image_url}}" alt="{{profile2.image_url}}">
+                    </a>
+                    <p>{{friend.profile2}}</p>
+                {% else %}
+                    <a href="{% url 'show_profile' friend.profile1.pk %}">
+                        <img src="{{friend.profile1.image_url}}" alt="{{profile1.image_url}}">
+                    </a>
+                    <p>{{friend.profile1}}</p>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <p>No Friends.</p>
+        {% endif %}
     </div>
 </main>
 
