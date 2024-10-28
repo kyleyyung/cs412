@@ -8,7 +8,6 @@
 
 <!-- print out the context variable called profiles -->
 
-<main class="mini_grid-container">
     <div class="profile">
         <img src="{{profile.image_url}}" alt="{{profile.image_url}}"> <!--display the profiles image-->
         <h3>{{profile.first_name}} {{profile.last_name}}</h3> <!-- displays their first and last name-->
@@ -18,42 +17,42 @@
     </div>
 
     <!--display the comments-->
-    <div>
         <h2>Status Messages</h2>
-        <!-- creates a button to redirec the user to the create status form-->
-        <button><a href="{% url 'create_status' profile.pk %}">Add Message</a></button>
-        <!--call the Profiles's get_status() method-->
-        {% if profile.get_status_messages %}
-            {% for status in profile.get_status_messages %}
-            <table class="sm">
-                <td>
-                    <!-- check if there are any images-->
-                    {% if status.get_images %}
-                        <!-- display status images images-->
-                        {% for img in status.get_images %}
-                            <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
-                        {% endfor %}
-                    <!-- if there isn't-->
-                    {% else %}
-                    <!--display default avatar-->
-                        <img src='https://wooster.edu/wp-content/uploads/2021/06/Headshot_Placeholder_3-1-500x500.png' alt='Default Avatar'>
-                    {% endif %}
-                </td>
-                <td>
-                    <table>
-                        <tr>
-                            <!-- display the message and the time it was sent-->
-                            <p>{{ status.timestamp }}</p>
-                            <p>{{ status.message }}</p>
-                        </tr>
-                        <tr>
-                            <!-- display the update and delete message buttons-->
-                            <button class="mini_button"><a href="{% url 'update_status' status.pk %}">Update</a></button>
-                            <button class="mini_button"><a href="{% url 'delete_status' status.pk %}">Delete</a></button>
-                        </tr>
+            <!-- creates a button to redirec the user to the create status form-->
+            <button><a href="{% url 'create_status' profile.pk %}">Add Message</a></button>
+            <div class="status-container">
+            <!--call the Profiles's get_status() method-->
+            {% if profile.get_status_messages %}
+                {% for status in profile.get_status_messages %}
+                    <table class="sm">
+                        <td>
+                            <!-- check if there are any images-->
+                            {% if status.get_images %}
+                                <!-- display status images images-->
+                                {% for img in status.get_images %}
+                                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
+                                {% endfor %}
+                            <!-- if there isn't-->
+                            {% else %}
+                            <!--display default avatar-->
+                                <img src='https://wooster.edu/wp-content/uploads/2021/06/Headshot_Placeholder_3-1-500x500.png' alt='Default Avatar'>
+                            {% endif %}
+                        </td>
+                        <td>
+                            <table>
+                                <tr>
+                                    <!-- display the message and the time it was sent-->
+                                    <p>{{ status.timestamp }}</p>
+                                    <p>{{ status.message }}</p>
+                                </tr>
+                                <tr>
+                                    <!-- display the update and delete message buttons-->
+                                    <button class="mini_button"><a href="{% url 'update_status' status.pk %}">Update</a></button>
+                                    <button class="mini_button"><a href="{% url 'delete_status' status.pk %}">Delete</a></button>
+                                </tr>
+                            </table>
+                        </td>
                     </table>
-                </td>
-            </table>
             <!-- end for loop-->
             {% endfor %}
         {% else %}
@@ -62,27 +61,41 @@
             <p>No Status Messages.</p>
         </div>
         {% endif %}
+    </div>
 
-        <p>Friends:</p>
+        <h2>Friends</h2>
+        <!-- check if profile has friends-->
         {% if profile.get_friends %}
+            <!-- if it does, display friends in a grid-->
+            <main class="grid-container">
             {% for friend in profile.get_friends %}
+                <!-- if profile is the profile1 of the Friend instance-->
                 {% if friend.profile1 == profile %}
-                    <a href="{% url 'show_profile' friend.profile2.pk %}">
-                        <img src="{{friend.profile2.image_url}}" alt="{{profile2.image_url}}">
-                    </a>
-                    <p>{{friend.profile2}}</p>
+                    <div class="profile">
+                        <a href="{% url 'show_profile' friend.profile2.pk %}">
+                            <img src="{{friend.profile2.image_url}}" alt="{{profile2.image_url}}">
+                        </a>
+                        <p>{{friend.profile2}}</p>
+                    </div>
+                    <!-- if it's the profile2 instance -->
                 {% else %}
-                    <a href="{% url 'show_profile' friend.profile1.pk %}">
-                        <img src="{{friend.profile1.image_url}}" alt="{{profile1.image_url}}">
-                    </a>
-                    <p>{{friend.profile1}}</p>
+                    <div class="profile">
+                        <a href="{% url 'show_profile' friend.profile1.pk %}">
+                            <img src="{{friend.profile1.image_url}}" alt="{{profile1.image_url}}">
+                        </a>
+                        <p>{{friend.profile1}}</p>
+                    </div>
                 {% endif %}
             {% endfor %}
+        <!-- if the profile has no friends-->
         {% else %}
             <p>No Friends.</p>
         {% endif %}
+        </main>
+        <!-- button to redirect users to friend suggestions page-->
         <button class="mini_button"><a href="{% url 'show_suggestions' profile.pk %}">Friend Suggestions</a></button>
+        <!-- button to redirect users to the profile's news feed page-->
+        <button class="mini_button"><a href="{% url 'show_news_feed' profile.pk %}">News Feed</a></button>
     </div>
-</main>
 
 {% endblock %}

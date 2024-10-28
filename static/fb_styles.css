@@ -88,7 +88,60 @@ input {
     margin: 10px;
 }
 
+/* targets the status messages*/
+.status-container {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* center of the page*/
+    flex-direction: column; /* display one by one */
+}
+
 .sm {
     background-color: lightblue;
     margin: 20px;
+}
+
+/* profile pictures in news feed*/
+.feed-icon {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%; /* make them circles */
+    margin-right: 10px;
+}
+
+.news-feed {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.mini-button {
+    padding: 10px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+/* the names, times and photos div*/
+.status-header {
+    display: flex;
+}
+
+/* the messages and photos (if there are)*/
+.status-content {
+    justify-items: left;
+}
+
+/* the names and times div*/
+.status-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+/* the divider of messages in news feed*/
+.status-divider {
+    margin-top: 20px;
+    border: 0;
+    height: 1px;
+    background: #2e3e83;
 }

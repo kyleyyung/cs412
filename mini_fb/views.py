@@ -108,11 +108,11 @@ class UpdateStatusMessageView(UpdateView):
     
 class CreateFriendView(View):
     '''
-    class-based view called AddFriendView, which inherits from the generic View class.
+    class-based view called CreateFriendView, which inherits from the generic View class.
     '''
     def dispatch(self, request, pk, other_pk):
         '''
-        read the URL parameters (from self.kwargs), use the object manager to find the requisite Profile objects, and then call the Profile‘s add_friend method (from step 2, above).
+        read the URL parameters (from self.kwargs), use the object manager to find the requisite Profile objects, and then call the Profile's add_friend method.
         '''
         p1 = Profile.objects.get(pk=pk)
         p2 = Profile.objects.get(pk=other_pk)
@@ -120,5 +120,11 @@ class CreateFriendView(View):
         return redirect('show_profile', pk=pk)
 
 class ShowFriendSuggestionsView(DetailView):
+    '''a view to show friend suggestions'''
     model = Profile
     template_name = 'mini_fb/friend_suggestions.html'
+
+class ShowNewsFeedView(DetailView):
+    '''a view to show the news feed'''
+    model = Profile
+    template_name = 'mini_fb/news_feed.html'

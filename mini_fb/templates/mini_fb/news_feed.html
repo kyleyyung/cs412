@@ -1,0 +1,38 @@
+<!--mini_fb/templates/blogs-->
+{% extends 'mini_fb/base.html' %}
+{% block content %}
+
+<div class="news-feed">
+    <h2>News Feed</h2>
+    <button class="mini-button">
+        <a href="{% url 'show_profile' profile.pk %}">Back to Profile</a>
+    </button>
+
+    <!-- call profile's get_news_feed method to get all status messages of friends and self-->
+    {% for status in profile.get_news_feed %}
+    <div>
+        <div class="status-header">
+            <!-- profile picture-->
+            <img class="feed-icon" src="{{ status.profile.image_url }}" alt="Profile Image">
+            <!-- name and timestamp of message-->
+            <div class="status-info">
+                <strong>{{ status.profile }}</strong>
+                <p>{{ status.timestamp }}</p>
+            </div>
+        </div>
+
+        <!-- the message and image-->
+        <div class="status-content">
+            <p>{{ status }}</p>
+            <!-- call the get_images method to get all images-->
+            {% for img in status.get_images %}
+                <img src="{{ img.image_file.url }}" alt="Status Image">
+            {% endfor %}
+        </div>
+        <!-- create a divider to seperate messages-->
+        <hr class="status-divider">
+    </div>
+    {% endfor %}
+</div>
+
+{% endblock %}

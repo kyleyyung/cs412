@@ -4,15 +4,21 @@
 
 <div>
     <h2>Friend Suggestions</h2>
+    <!-- button to bring user back to profile page-->
+    <button class="mini_button"><a href="{% url 'show_profile' profile.pk %}">Back to Profile</a></button>
+        <!-- display grid of profiles that aren't friends with the selected profile-->
         <main class="grid-container">
+            <!-- get friend suggestions by calling the profile's get_friend_suggestions method -->
             {% for friend in profile.get_friend_suggestions %}
             <div class="profile">
+                <!-- button to become friends with profile-->
                 <button class="mini_button"><a href="{% url 'create_friend' profile.pk friend.pk %}">Add Friend</a></button>
                 <a href="{% url 'show_suggestions' profile.pk %}">
                     <img src="{{friend.image_url}}" alt="{{friend.image_url}}">
                 </a>
                 <p>{{friend}}</p>
             </div>
+            <!-- end for loop-->
         {% endfor %}
     </main>
 </div>
