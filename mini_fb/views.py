@@ -7,6 +7,7 @@ from django.urls import reverse
 from . models import *
 from .forms import *
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 class ShowAllProfilesView(ListView):
     '''A view to show all Profiles'''
@@ -22,7 +23,7 @@ class ShowProfilePageView(DetailView):
     template_name = 'mini_fb/show_profile.html'
     context_object_name = 'profile'
 
-class CreateProfileView(CreateView):
+class CreateProfileView(LoginRequiredMixin, CreateView):
     '''a view to show/process the create profile form
     on GET: send back the form
     on POST: read the form data, create an instant of profile; save to database;'''
@@ -35,7 +36,7 @@ class CreateProfileView(CreateView):
         # return reverse("show_all")
         return self.object.get_absolute_url()
     
-class CreateStatusMessageView(CreateView):
+class CreateStatusMessageView(LoginRequiredMixin, CreateView):
     '''a view to show/process the create status message form
     on GET: send back the form
     on POST: read the form data, create an instant of a status message; save to database;'''
@@ -78,7 +79,7 @@ class CreateStatusMessageView(CreateView):
 
         return context
 
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(LoginRequiredMixin, UpdateView):
     '''a view to show/process the update profile form
     on GET: send back the form
     on POST: read the form data, update the instant of a profile; save to database;'''
@@ -86,7 +87,7 @@ class UpdateProfileView(UpdateView):
     form_class = UpdateProfileForm
     template_name = 'mini_fb/update_profile_form.html'
 
-class DeleteStatusMessageView(DeleteView):
+class DeleteStatusMessageView(LoginRequiredMixin, DeleteView):
     '''a view to show/process the deletion of a status message'''
     model = StatusMessage
     template_name = 'mini_fb/delete_status_form.html'
@@ -96,7 +97,7 @@ class DeleteStatusMessageView(DeleteView):
         '''return the URL to redirect to after successful delete'''
         return reverse("show_profile", kwargs={'pk': self.object.profile.pk})
     
-class UpdateStatusMessageView(UpdateView):
+class UpdateStatusMessageView(LoginRequiredMixin, UpdateView):
     '''a view to show/process the update of a status message'''
     model = StatusMessage
     form_class = UpdateStatusForm
@@ -106,7 +107,7 @@ class UpdateStatusMessageView(UpdateView):
         '''return the URL to redirect to after successful update'''
         return reverse("show_profile", kwargs={'pk': self.object.profile.pk})
     
-class CreateFriendView(View):
+class CreateFriendView(LoginRequiredMixin, View):
     '''
     class-based view called CreateFriendView, which inherits from the generic View class.
     '''
@@ -119,12 +120,12 @@ class CreateFriendView(View):
         p1.add_friend(p2)
         return redirect('show_profile', pk=pk)
 
-class ShowFriendSuggestionsView(DetailView):
+class ShowFriendSuggestionsView(LoginRequiredMixin, DetailView):
     '''a view to show friend suggestions'''
     model = Profile
     template_name = 'mini_fb/friend_suggestions.html'
 
-class ShowNewsFeedView(DetailView):
+class ShowNewsFeedView(LoginRequiredMixin, DetailView):
     '''a view to show the news feed'''
     model = Profile
     template_name = 'mini_fb/news_feed.html'

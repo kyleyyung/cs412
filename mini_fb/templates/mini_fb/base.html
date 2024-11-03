@@ -8,6 +8,11 @@
     <body>
 
         <nav class="navbar">
+            {% if request.user.is_authenticated %}
+                Logged in user: {{ request.user }}.
+            {% else %}
+                Not logged in.
+            {% endif %}
             <ul>
                 <a href="{% url 'show_all_profiles' %}">All Profiles</a>
                 <a href="{% url 'create_profile' %}">Create a Profile</a>
