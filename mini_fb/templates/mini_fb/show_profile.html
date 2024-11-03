@@ -13,13 +13,17 @@
         <h3>{{profile.first_name}} {{profile.last_name}}</h3> <!-- displays their first and last name-->
         <p>{{profile.city}}</p> <!--displays their home city-->
         <p>{{profile.email}} </p> <!-- displays their email address-->
-        <button><a href="{% url 'update_profile' profile.pk %}">Update Profile</a></button>
+        {% if request.user == profile.user %}
+            <button><a href="{% url 'update_profile' %}">Update Profile</a></button>
+        {% endif %}
     </div>
 
     <!--display the comments-->
         <h2>Status Messages</h2>
+        {% if request.user == profile.user %}
             <!-- creates a button to redirec the user to the create status form-->
-            <button><a href="{% url 'create_status' profile.pk %}">Add Message</a></button>
+            <button><a href="{% url 'create_status' %}">Add Message</a></button>
+        {% endif %}
             <div class="status-container">
             <!--call the Profiles's get_status() method-->
             {% if profile.get_status_messages %}
@@ -45,11 +49,13 @@
                                     <p>{{ status.timestamp }}</p>
                                     <p>{{ status.message }}</p>
                                 </tr>
-                                <tr>
-                                    <!-- display the update and delete message buttons-->
-                                    <button class="mini_button"><a href="{% url 'update_status' status.pk %}">Update</a></button>
-                                    <button class="mini_button"><a href="{% url 'delete_status' status.pk %}">Delete</a></button>
-                                </tr>
+                                {% if request.user == profile.user %}
+                                    <tr>
+                                        <!-- display the update and delete message buttons-->
+                                        <button class="mini_button"><a href="{% url 'update_status' status.pk %}">Update</a></button>
+                                        <button class="mini_button"><a href="{% url 'delete_status' status.pk %}">Delete</a></button>
+                                    </tr>
+                                {% endif %}
                             </table>
                         </td>
                     </table>
@@ -92,10 +98,12 @@
             <p>No Friends.</p>
         {% endif %}
         </main>
-        <!-- button to redirect users to friend suggestions page-->
-        <button class="mini_button"><a href="{% url 'show_suggestions' profile.pk %}">Friend Suggestions</a></button>
-        <!-- button to redirect users to the profile's news feed page-->
-        <button class="mini_button"><a href="{% url 'show_news_feed' profile.pk %}">News Feed</a></button>
+        {% if request.user == profile.user %}
+            <!-- button to redirect users to friend suggestions page-->
+            <button class="mini_button"><a href="{% url 'show_suggestions' %}">Friend Suggestions</a></button>
+            <!-- button to redirect users to the profile's news feed page-->
+            <button class="mini_button"><a href="{% url 'show_news_feed' %}">News Feed</a></button>
+        {% endif %}
     </div>
 
 {% endblock %}
