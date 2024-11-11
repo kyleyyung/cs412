@@ -1,0 +1,23 @@
+<!-- voter_analytics/templates/voter_analytics/base.html -->
+{% load static %}
+<html>
+    <head>
+        <title>Newton Voter Analytics</title>
+        <link rel="stylesheet" href="{% static 'analytics.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Newton Voter Analytics</h1>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="{% url 'home' %}">Voter List</a>
+                        <a href="{% url 'graphs' %}">Graphs</a>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+    {% block content %}
+    {% endblock %}    
+    </body>
+</html>

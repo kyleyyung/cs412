@@ -1,0 +1,65 @@
+<!-- templates/marathon_analytics/results.html -->
+{% extends 'voter_analytics/base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <!-- import html from another file-->
+        {% include 'voter_analytics/search.html' %}
+    </div>
+
+    <h1>Results</h1>
+    <div class="row">
+        <!-- display voters in a table -->
+        <table>
+            <!-- columns of table -->
+            <tr>
+                <th>Name</th>
+                <th>Street Address</th>
+                <th>Date of Birth</th>
+                <th>Party Affiliation</th>
+                <th>Voter Score</th>
+            </tr>
+            
+            <!-- get voters from results -->
+            {% for r in results %}
+            <tr>
+                <!-- link to the voter's page -->
+                <td>
+                    <a href="{% url 'voter_detail' r.pk %}">{{r.first_name}} {{r.last_name}}</a>
+                </td>      
+                <td>{{r.street_number}} {{r.street_name}}</td>
+                <td>{{r.dob}}</td>
+                <td>{{r.party}}</td>
+                <td>{{r.score}}</td>       
+            </tr>
+            {% endfor %}
+    
+        </table>
+        </div>
+        <div class="row">
+            <!-- if paginated -->
+            {% if is_paginated %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <!-- display link for prev page-->
+                    <li>
+                        <span><a href="?page={{ page_obj.previous_page_number }}">Previous</a></span>
+                 
+                    </li>
+                {% endif %}
+                    <li class="">
+                        <!-- display current page number in relation to total-->
+                        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                    </li>
+                {% if page_obj.has_next %}
+                    <li>
+                        <!-- display link for next page-->
+                        <span><a href="?page={{ page_obj.next_page_number }}">Next</a></span>
+                    </li>
+                {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+    </div> 
+    
+{% endblock %}

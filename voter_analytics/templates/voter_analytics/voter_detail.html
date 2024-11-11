@@ -1,0 +1,29 @@
+<!-- voter_analytics/templates/voter_analytics/voter_detail.html -->
+{% extends 'voter_analytics/base.html' %}
+{% block content %}
+    <h1>Voter: {{ voter.first_name }} {{ voter.last_name }}</h1>
+    <p>Street Address: {{ voter.street_number }}, {{ voter.street_name }}, {{ voter.zipcode }}</p>
+
+    <!-- create a link to load Google map to display address of voter -->
+    <p>
+        <a href="https://www.google.com/maps/search/?api=1&query={{ voter.street_number }},{{ voter.street_name }},{{ voter.zipcode }}" target="_blank">
+            View Address on Google Maps
+        </a>
+    </p>
+
+    <!-- if they have an appartment number display it-->
+    {% if voter.apartment_number %}
+        <p>Apartment Number: {{ voter.apartment_number }}</p>
+    {% endif %}
+    <!-- display info of voter -->
+    <p>Date of Birth: {{ voter.dob }}</p>
+    <p>Date of Registration: {{ voter.dor }}</p>
+    <p>Party Affiliation: {{ voter.party }}</p>
+    <p>Precinct Number: {{ voter.precinct }}</p>
+    <p>v20state: {{ voter.v20state }}</p>
+    <p>v21town: {{ voter.v21town }}</p>
+    <p>v21primary: {{ voter.v21primary }}</p>
+    <p>v22general: {{ voter.v22general }}</p>
+    <p>v23town: {{ voter.v23town }}</p>
+    <p>Voter Score: {{ voter.score }}</p>
+{% endblock %}
