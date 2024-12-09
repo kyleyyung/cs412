@@ -1,0 +1,303 @@
+body {
+    text-align: center;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: rgb(255, 227, 192);
+}
+
+/* styles for the navbar */
+.navbar {
+    display: flex;
+    background-color: rgb(255, 192, 121);
+    padding: 5px;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Navbar List */
+.navbar-list {
+    display: flex;
+    list-style-type: none; /* Remove bullets */
+    padding: 0;
+    margin: 0;
+    align-items: center;
+}
+
+/* Navbar Items */
+.navbar-item {
+    margin: 0 15px; /* Space between items */
+    display: inline-block; /* Keep the form inline with the links */
+    align-items: center;
+}
+
+.mini_navbar {
+    background-color: rgb(255, 192, 121);
+    padding: 5px;
+}
+
+.mini_navbar form {
+    display: inline-block; /* Keep the form inline with the links */
+    margin: 0 10px; 
+}
+
+a {
+    color: white;
+    padding: 30px;
+    font-size: 20px;
+    font-weight: bold; 
+}
+
+/* styles the links in the nav bar */
+a:link { 
+  text-decoration: none; 
+} 
+
+a:visited { 
+  text-decoration: none; 
+} 
+
+.unstyled-link {
+    text-decoration: none;
+    color: #ff9e1f;
+    font-weight: normal;
+    font-size: inherit;
+}
+
+/* styles main */
+.grid-container {
+    display: grid; /* displays the profile in a grid pattern*/
+    grid-template-columns: repeat(4, 1fr); /* organizes the grid to have have at most 3 items in a row */
+    gap: 20px; /* space between the grid items */
+}
+
+/* styles main */
+.mini_grid-container {
+    display: grid; /* displays the profile in a grid pattern*/
+    grid-template-columns: repeat(2, 1fr); /* organizes the grid to have have at most 3 items in a row */
+    gap: 20px; /* space between the grid items */
+}
+
+.product {
+    background-color: rgb(255, 192, 121);
+    border: 5px solid white;  /* creates a white border around products */
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+/* Product Page Container */
+.product-page {
+    display: flex;
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 70%;
+    margin: 20px auto;
+}
+
+/* product image */
+.product-image img.img-large {
+    width: 300px;
+    height: auto;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    object-fit: cover;
+}
+
+/* product details */
+.product-details {
+    flex: 1;
+}
+
+.product-title {
+    font-size: 1.8em;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-price {
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.product-seller a {
+    color: #ff9e1f;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.product-description {
+    margin-bottom: 15px;
+    color: #333;
+}
+
+/* form */
+form {
+    margin-bottom: 20px;
+}
+
+label {
+    font-weight: bold;
+}
+
+/* quantity input */
+input[type="number"] {
+    width: 50px;
+    padding: 5px;
+    margin-right: 10px;
+}
+
+button {
+    background-color: #f0c14b;
+    color: #111;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* update and delete buttons */
+.actions {
+    display: flex;
+    justify-content: center; 
+    margin-top: 15px; 
+}
+
+.button {
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    background-color: rgb(251, 165, 66);
+}
+
+/* keeps image at 400x400px*/
+.img_small {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.img_large {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    margin: 10px;
+}
+
+.user_img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 100px;
+}
+
+td { /* targets td */
+    vertical-align: top; /* aligns at the top*/
+    padding: 10px;
+    width: 50%; /* makes sure they take up equal space */
+}
+
+/* targets the paragraph texts */
+p {
+    text-align: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
+button {
+    text-decoration: none;
+    color: white;
+    padding: 8px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    font-size: 14px;
+    text-align: center;
+    background-color: rgb(251, 165, 66);
+}
+
+/* targets the submit and cancel buttons in the forms*/
+input {
+    margin: 10px;
+}
+
+/* targets the reviews */
+
+.rev {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px auto;
+    width: 600px; /* Adjust width to suit your page layout */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* review user Iimage and name */
+.review-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.user-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+    object-fit: cover;
+}
+
+.user-info {
+    font-size: 14px;
+    color: #333;
+}
+
+.review-timestamp {
+    font-size: 12px;
+    color: #888;
+}
+
+/* review body */
+.review-body .review-message {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* review images */
+.review-images {
+    display: flex;
+    margin-top: 10px;
+}
+
+.review-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.mini-button {
+    padding: 10px;
+    border: none;
+    margin-bottom: 20px;
+}
+
+.searchbar {
+    width: 500px;
+    height: 30px;
+    border-radius: 10px;
+}
+
+.order_table th, td {
+    width: 33%;
+    align-items: center;
+    text-align: center;
+}

@@ -1,0 +1,43 @@
+<!--project/templates/project/show_user.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+{% if profile.image_url %}
+    <!-- display profile picture-->
+        <img src="{{profile.image_url}}" alt="{{profile.image_url}}" class="user_img">
+<!-- if there isn't-->
+{% else %}
+<!--display default avatar-->
+    <img src='https://wooster.edu/wp-content/uploads/2021/06/Headshot_Placeholder_3-1-500x500.png' alt='Default Avatar' class="user_img">
+{% endif %}
+
+ <!-- display user's name -->
+<h2>{{profile.first_name}} {{profile.last_name}}</h2>
+
+ <!-- if user is the owner of the profile -->
+{% if profile.user == request.user %}
+     <!-- allow them to update the profile -->
+    <button><a href="{% url 'update_profile' profile.pk %}">Update</a></button>
+{% endif %}
+
+ <!-- display the products the profile sells-->
+<h3>Products:</h3>
+        <main class="grid-container">
+             <!-- if profile sells products -->
+            {% if profile.get_products %}
+                 <!-- iterate through them -->
+                {% for p in profile.get_products %}
+                    <div class="product">
+                         <!-- display product image, title and price -->
+                        <a href="{% url 'show_product' p.pk %}">
+                            <img class="img_large" src="{{p.image_url}}" alt="{{p.image_url}}">
+                        </a>
+                        <p>{{p.title}}</p>
+                        <p>{{p.price}}</p>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        </main>
+
+{% endblock %}

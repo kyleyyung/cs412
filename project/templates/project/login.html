@@ -1,0 +1,19 @@
+<!-- project/templates/project/login.html -->
+{% extends 'project/base.html' %}
+{% block content %}
+<!-- This basic authentication form works. need to set "next" to redirect to correct page.-->
+<h2>Login</h2>
+
+<form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    {{ form }}
+    <!-- only do this if we don't have next attrible already -->
+    {% if not next %}
+        <input type="hidden" name="next" value="{% url 'home' %}">
+    {% else %}
+        <input type="hidden" name="next" value="{{ next }}">
+    {% endif %}
+        <input type="submit" value="Login">
+</form>
+
+{% endblock %}

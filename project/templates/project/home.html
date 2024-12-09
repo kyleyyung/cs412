@@ -1,0 +1,19 @@
+<!--project/templates/project/home.html -->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<main class="grid-container">
+    {% for p in products %} <!-- for loop that goes through every product-->
+    <div class="product">
+        <a href="{% url 'show_product' p.pk %}">
+            <img class="img_small" src="{{p.image_url}}" alt="{{p.image_url}}"> <!--display the product image-->
+        </a>
+        <p>{{p.title}}</p> <!--displays the product's title-->
+        <p>${{p.price}} </p> <!-- displays the product's price-->
+    </div>
+    {% endfor %} <!--end for loop-->
+</main>
+
+{% endblock %}

@@ -14,7 +14,7 @@ class Profile(models.Model):
     email = models.TextField(blank = False)
     image_url = models.URLField(blank = True)
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='mini_fb_profile')
 
     def __str__(self):
         '''Return a string representation of this Profile'''

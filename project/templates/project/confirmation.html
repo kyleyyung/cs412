@@ -1,0 +1,11 @@
+<!-- html page that confirms order purchase-->
+{% extends 'project/base.html' %}
+
+{% block content %}
+<h1>Thank You for Your Purchase!</h1>
+<p>Your order has been confirmed.</p>
+
+<!-- button to redirect to home-->
+<button><a href="{% url 'home' %}">Continue Shopping</a></button>
+
+{% endblock %}

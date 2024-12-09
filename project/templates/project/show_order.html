@@ -1,0 +1,53 @@
+<!-- project/templates/project/show_order.html -->
+{% extends "project/base.html" %}
+
+{% block content %}
+<h1>Your Cart</h1>
+
+<!-- if user has an items in cart -->
+{% if items %}
+    <table class="order_table">
+        <!-- table headers -->
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+
+        <!-- loop through items in order -->
+        {% for item in items %}
+        <tr>
+            <!-- display items info -->
+            <td>
+                <a href="{% url 'show_product' item.product.pk %}" class="unstyled-link">{{ item.product.title }}</a>
+            </td>
+            <td>{{ item.quantity }}</td>
+            <td>${{ item.product.price }}</td>
+            <td><button><a href="{% url 'update_orderitem' item.pk %}">Update</a></button></td>
+            <td><button><a href="{% url 'delete_orderitem' item.pk %}">Remove</a></button></td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- display the total price -->
+    <h3>Total: ${{ total_price }}</h3>
+
+    <div class="actions">
+        <!-- purchase item form -->
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="button">Purchase Items</button>
+        </form>
+
+        <!-- Button that redirects user to home page-->
+        <form action="{% url 'home' %}" method="GET">
+            <button type="submit" class="button">Browse More</button>
+        </form>
+    </div>
+
+<!-- If user doesn't have an order-->
+{% else %}
+    <p>Your Cart is Empty!</p>
+{% endif %}
+
+{% endblock %}

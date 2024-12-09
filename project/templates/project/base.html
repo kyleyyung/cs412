@@ -1,0 +1,64 @@
+<!--template html for the pages-->
+{% load static %}
+<html>
+    <head>
+        <title>project</title>
+        <link rel="stylesheet" href="{% static 'project_styles.css' %}">
+    </head>
+    <body>
+        <div>
+            {% if request.user.is_authenticated %}
+                <nav class="navbar">
+                    <ul class="navbar-list">
+                        <!-- display username -->
+                        <li class="navbar-item">
+                            <a href="{% url 'show_profile' request.user.profile.pk %}">{{ request.user }}</a>
+                        </li>
+
+                        <!-- search form -->
+                        <li class="navbar-item">
+                            <form class="navbar-form">
+                                <input type="text" name="title" class="searchbar" placeholder="Search...">
+                                <button type="submit">Search</button>
+                            </form>
+                        </li>
+
+                        <!-- orders link -->
+                        <li class="navbar-item">
+                            <a href="{% url 'show_order' request.user.pk %}">Orders</a>
+                        </li>
+                    </ul>
+                </nav>
+                {% endif %}
+
+            <nav class="mini_navbar">
+                <ul>
+                    <!-- display home button -->
+                    <a href="{% url 'home' %}">Home</a>
+                    <!-- check if user is authenticated -->
+                    {% if request.user.is_authenticated %}
+                        <!-- Allow them to view their profile -->
+                        <a href="{% url 'show_profile' request.user.profile.pk %}">View Profile</a>
+                        <!-- Allow them to sell a product -->
+                        <a href="{% url 'create_product' %}">Add a Product</a>
+                         <!-- display log out button -->
+                        <form method="POST" action="{% url 'logout' %}">
+                            {% csrf_token %}
+                            <input type="submit" value="Logout">
+                        </form>
+                     <!-- if not, display log in button and create profile-->
+                    {% else %}
+                        <a href="{% url 'create_profile' %}">Create a Profile</a>
+                        <a href="{% url 'login' %}">Sign in</a>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+
+        {% block content %}
+        
+        {% endblock %}
+        <hr>
+        <p>Designed by Kyle Yung</p>
+    </body>
+</html>

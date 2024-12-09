@@ -1,0 +1,106 @@
+<!--project/templates/project/show_product.html -->
+
+{% extends 'project/base.html' %}
+
+{% block content %}
+
+<div class="product-page">
+    <!-- product image -->
+    <div class="product-image">
+        <img src="{{ product.image_url }}" alt="Product Image" class="img-large">
+    </div>
+
+    <!-- product details -->
+    <div class="product-details">
+        <h2 class="product-title">{{ product.title }}</h2>
+        <p class="product-price">${{ product.price }}</p>
+
+        <!-- seller information -->
+        <p class="product-seller">
+            <a href="{% url 'show_profile' product.seller.pk %}">Seller: {{ product.seller }}</a>
+        </p>
+
+        <p class="product-description">{{ product.description }}</p>
+
+        <!-- add to cart button -->
+        {% if product.seller.user != request.user and request.user.is_authenticated %}
+            <form method="POST" action="{% url 'add_order' product.pk %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="button">Add to Cart</button>
+            </form>
+        {% endif %}
+
+        <!-- seller actions -->
+        {% if product.seller.user == request.user %}
+            <div class="actions">
+                <button><a href="{% url 'update_product' product.pk %}" class="button">Update</a></button>
+                <button><a href="{% url 'delete_product' product.pk %}" class="button">Delete</a></button>
+            </div>
+        {% endif %}
+    </div>
+</div>
+
+    <!-- display the reviews -->
+    <h2>Reviews</h2>
+        <div class="review-container">
+        <!--if the user is authenticated, allow them to make a review -->
+        {% if request.user.is_authenticated %}
+            <button><a href="{% url 'create_review' product.pk %}">Add Review</a></button>
+        {% endif %}
+
+        <!-- if the product has reviews -->
+        {% if product.get_reviews %}
+            <!-- iterate through them -->
+            {% for r in product.get_reviews %}
+            <div class="rev">
+                <!-- user information -->
+                <div class="review-header">
+                    <!-- if review user has a profile picture display it-->
+                    <a href="{% url 'show_profile' r.profile.pk %}">
+                        {% if r.profile.image_url %}
+                            <img src="{{ r.profile.image_url }}" alt="User Image" class="user-img">
+                        {% else %}
+                        <!-- display default avatar otherwise -->
+                            <img src="{{ 'https://wooster.edu/wp-content/uploads/2021/06/Headshot_Placeholder_3-1-500x500.png' }}" alt="User Image" class="user-img">
+                        {% endif %}
+                    </a>
+                    <div class="user-info">
+                        <p class="review-timestamp">{{ r.timestamp }}</p> <!-- Review timestamp -->
+                        <strong>{{ r.profile.first_name }} {{ r.profile.last_name }}</strong> <!-- User's name -->
+                    </div>
+                </div>
+            
+                <!-- review -->
+                <div class="review-body">
+                    <p class="review-title"><strong>{{ r.message }}</strong></p>
+                    
+                    <!-- review images -->
+                    <div class="review-images">
+                        {% if r.get_images %}
+                            {% for img in r.get_images %}
+                                <img src="{{ img.image_file.url }}" alt="Review Image" class="review-img">
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- if user made the review, allow them to delete or update it-->
+                {% if r.profile.user == request.user %}
+                <div class="review-actions">
+                    <button><a href="{% url 'update_review' r.pk %}">Update</a></button>
+                    <button><a href="{% url 'delete_review' r.pk %}">Delete</a></button>
+                </div>
+                {% endif %}
+            </div>
+        <!-- end for loop-->
+        {% endfor %}
+    {% else %}
+    <div>
+        <!-- if no reviews, say so-->
+        <p>No Reviews.</p>
+    </div>
+    {% endif %}
+</div>
+
+
+{% endblock %}

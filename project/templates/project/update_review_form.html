@@ -1,0 +1,28 @@
+<!--project/templates/project/update_review_form-->
+{% extends 'project/base.html' %}
+{% block content %}
+
+<h2>Update Review</h2>
+
+<form method="POST">
+    <!-- display the form (context variable) -->
+     <table>
+        {{form.as_table}}
+        <tr>
+            <td>    
+                 <!-- the submit button-->   
+                <input type="submit" name="Update Review">
+                {% csrf_token %}
+            </form>
+            <!-- the cancel button, redirects user to the targeted product page-->
+            <form action="{% url 'show_product' object.product.pk %}">
+                <input type="submit" name="Cancel" value="Cancel">
+            </form>
+            </td>
+        </tr>
+     </table>
+
+</form>
+
+
+{% endblock %}

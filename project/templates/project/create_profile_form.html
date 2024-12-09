@@ -1,0 +1,28 @@
+<!--project/templates/create_profile-->
+{% extends 'project/base.html' %}
+{% block content %}
+
+<h2>Add a Profile</h2>
+
+<form method="POST">
+    <!-- display the form (context variable) -->
+     <table>
+        {{form2.as_table}}
+        {{form.as_table}}
+        {% csrf_token %}
+        <tr>
+            <td></td>
+            <td>    
+                 <!-- the submit button-->   
+                <input type="submit" name="Create Profile">
+            </form>
+            <!-- the cancel button, redirects user to the show all profiles page-->
+            <form action="{% url 'home' %}">
+                <input type="submit" name="Cancel" value="Cancel">
+            </form>
+            </td>
+        </tr>
+     </table>
+</form>
+
+{% endblock %}
