@@ -1,3 +1,6 @@
+# Kyle Yung, yungk@bu.edu
+# Defines the paths and urls to various pages/models in the application
+
 from django.urls import path
 from django.conf import settings 
 from . import views

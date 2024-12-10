@@ -1,5 +1,6 @@
-#project/views.py
-# views to show the mini amazon app
+# Kyle Yung, yungk@bu.edu
+# views to show project app
+# project/views.py
 
 from django.shortcuts import render, redirect
 from .models import *

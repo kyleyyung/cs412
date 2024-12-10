@@ -1,4 +1,6 @@
-#mini_fb/forms.py
+# Kyle Yung, yungk@bu.edu
+# creates from classes used to create, delete and update various models in the application
+#project/forms.py
 
 from django import forms
 from .models import *

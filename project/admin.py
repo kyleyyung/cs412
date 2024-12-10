@@ -1,3 +1,5 @@
+# Kyle Yung, yungk@bu.edu
+# Registers models in the admin page
 from django.contrib import admin
 
 # Register your models here.
