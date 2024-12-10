@@ -9,6 +9,7 @@
     <table class="order_table">
         <!-- table headers -->
         <tr>
+            <th>Image</th>
             <th>Product</th>
             <th>Quantity</th>
             <th>Price</th>
@@ -18,13 +19,25 @@
         {% for item in items %}
         <tr>
             <!-- display items info -->
-            <td>
-                <a href="{% url 'show_product' item.product.pk %}" class="unstyled-link">{{ item.product.title }}</a>
-            </td>
+             <td>
+                    <div class="product-image">
+                        <a href="{% url 'show_product' item.product.pk %}">
+                            <img src="{{ item.product.image_url }}" alt="Product Image" class="img_small">
+                        </a>
+                    </div>
+             </td>
+            <td>{{ item.product.title }}</td>
             <td>{{ item.quantity }}</td>
             <td>${{ item.product.price }}</td>
-            <td><button><a href="{% url 'update_orderitem' item.pk %}">Update</a></button></td>
-            <td><button><a href="{% url 'delete_orderitem' item.pk %}">Remove</a></button></td>
+            <td>
+                <form action="{% url 'update_orderitem' item.pk %}" method="GET">
+                    <button type="submit" class="button">Update</button>
+                </form>
+ 
+                <form action="{% url 'delete_orderitem' item.pk %}" method="GET">
+                    <button type="submit" class="button">Delete</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </table>

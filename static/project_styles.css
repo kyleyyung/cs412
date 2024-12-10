@@ -13,19 +13,19 @@ body {
     justify-content: center;
 }
 
-/* Navbar List */
+/* navbar list */
 .navbar-list {
     display: flex;
-    list-style-type: none; /* Remove bullets */
+    list-style-type: none; /* remove bullets */
     padding: 0;
     margin: 0;
     align-items: center;
 }
 
-/* Navbar Items */
+/* navbar items */
 .navbar-item {
-    margin: 0 15px; /* Space between items */
-    display: inline-block; /* Keep the form inline with the links */
+    margin: 0 15px; 
+    display: inline-block; /* keep the form inline with the links */
     align-items: center;
 }
 
@@ -55,13 +55,6 @@ a:visited {
   text-decoration: none; 
 } 
 
-.unstyled-link {
-    text-decoration: none;
-    color: #ff9e1f;
-    font-weight: normal;
-    font-size: inherit;
-}
-
 /* styles main */
 .grid-container {
     display: grid; /* displays the profile in a grid pattern*/
@@ -69,13 +62,13 @@ a:visited {
     gap: 20px; /* space between the grid items */
 }
 
-/* styles main */
 .mini_grid-container {
     display: grid; /* displays the profile in a grid pattern*/
     grid-template-columns: repeat(2, 1fr); /* organizes the grid to have have at most 3 items in a row */
     gap: 20px; /* space between the grid items */
 }
 
+/* product cards in home page */
 .product {
     background-color: rgb(255, 192, 121);
     border: 5px solid white;  /* creates a white border around products */
@@ -84,7 +77,7 @@ a:visited {
     text-align: center;
 }
 
-/* Product Page Container */
+/* product page container */
 .product-page {
     display: flex;
     background-color: white;
@@ -110,7 +103,7 @@ a:visited {
 
 .product-title {
     font-size: 1.8em;
-    font-weight: bold;
+    font-weight: bold; /* bolds the product title */
     margin-bottom: 10px;
 }
 
@@ -120,14 +113,13 @@ a:visited {
 }
 
 .product-seller a {
-    color: #ff9e1f;
+    color: #ffb300;
     text-decoration: none;
     font-weight: bold;
 }
 
 .product-description {
     margin-bottom: 15px;
-    color: #333;
 }
 
 /* form */
@@ -174,7 +166,7 @@ button {
     background-color: rgb(251, 165, 66);
 }
 
-/* keeps image at 400x400px*/
+/* keeps image at 200x200px*/
 .img_small {
     width: 200px;
     height: 200px;
@@ -182,6 +174,7 @@ button {
     margin: 10px;
 }
 
+/* keeps image at 300x300px*/
 .img_large {
     width: 300px;
     height: 300px;
@@ -189,6 +182,7 @@ button {
     margin: 10px;
 }
 
+/* for user profile image */
 .user_img {
     width: 200px;
     height: 200px;
@@ -226,7 +220,6 @@ input {
 }
 
 /* targets the reviews */
-
 .rev {
     background-color: #fff;
     border: 1px solid #ddd;
@@ -260,7 +253,6 @@ input {
 
 .review-timestamp {
     font-size: 12px;
-    color: #888;
 }
 
 /* review body */
@@ -290,14 +282,16 @@ input {
     margin-bottom: 20px;
 }
 
+/* targets the search bar in navbar */
 .searchbar {
     width: 500px;
     height: 30px;
     border-radius: 10px;
 }
 
+/* targets the order table in the show_order page */
 .order_table th, td {
-    width: 33%;
+    width: 20%;
     align-items: center;
     text-align: center;
 }

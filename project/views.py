@@ -279,7 +279,7 @@ class ShowOrderPageView(LoginRequiredMixin, TemplateView):
 
         total_price = Decimal("0.00")
 
-        if cart_order is not None:
+        if cart_order:
             for item in cart_order.items.all():
                 try:
                     # Cast price to Decimal
@@ -339,7 +339,7 @@ class AddOrderView(LoginRequiredMixin, CreateView):
         form.instance.order = cart_order
         form.instance.product = product
 
-        try:
+        try: # handles if this item is already in cart
             existing_order_item = OrderItem.objects.get(order=cart_order, product=product)
             existing_order_item.quantity += form.cleaned_data['quantity']
             existing_order_item.save()
@@ -347,7 +347,8 @@ class AddOrderView(LoginRequiredMixin, CreateView):
         except OrderItem.DoesNotExist:
             # Save the new OrderItem
             return super().form_valid(form)
-        return redirect('show_product', pk=product.pk)
+        
+        return redirect('show_order', pk=profile.pk)
 
     def get_success_url(self) -> str:
         '''return the URL to redirect to after successful update'''

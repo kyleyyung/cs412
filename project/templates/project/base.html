@@ -44,7 +44,7 @@
                          <!-- display log out button -->
                         <form method="POST" action="{% url 'logout' %}">
                             {% csrf_token %}
-                            <input type="submit" value="Logout">
+                            <button type="submit" value="Logout">Logout</button>
                         </form>
                      <!-- if not, display log in button and create profile-->
                     {% else %}
